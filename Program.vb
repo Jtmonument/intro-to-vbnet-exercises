@@ -2,11 +2,16 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Console.Write("Enter a number: ")
         Dim sum As Integer
-        For i As Integer = 1 To Console.ReadLine()
-            sum += i
-        Next
+        Dim input As Integer
+        Do
+            Console.Write("Enter a number: ")
+            input = Console.ReadLine()
+            If input = -1 Then
+                Exit Do
+            End If
+            sum += input
+        Loop
         Console.WriteLine(sum)
     End Sub
 End Module
