@@ -2,9 +2,22 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Dim myself As bmi = New bmi
-        myself.Height = 1.88
-        myself.Weight = 63.5
-        Console.WriteLine(myself.BMI_Value)
+        Dim grades As New Queue(Of Integer)
+        Dim sum As Integer
+        Do
+            Console.Write("Enter a number: ")
+            Dim input As Integer = Console.ReadLine()
+            If input = -1 Then
+                Exit Do
+            End If
+            grades.Enqueue(input)
+            sum += input
+        Loop
+
+        Console.WriteLine(sum / grades.Count)
+
+        For i = 0 To grades.Count - 1
+            Console.WriteLine(grades.Dequeue)
+        Next
     End Sub
 End Module
