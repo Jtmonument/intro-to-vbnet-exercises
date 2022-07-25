@@ -2,16 +2,7 @@ Imports System
 
 Module Program
     Sub Main(args As String())
-        Dim sum As Integer
-        Dim input As Integer
-        Do
-            Console.Write("Enter a number: ")
-            input = Console.ReadLine()
-            If input = -1 Then
-                Exit Do
-            End If
-            sum += input
-        Loop
-        Console.WriteLine(sum)
+        Console.Write("Enter a number: ")
+        Console.WriteLine(String.Format("{0:D}", DateTime.Now.AddDays(CDbl(Console.ReadLine()))))
     End Sub
 End Module
