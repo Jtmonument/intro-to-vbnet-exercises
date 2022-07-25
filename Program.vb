@@ -1,23 +1,28 @@
 Imports System
+Imports System.IO
 
 Module Program
     Sub Main(args As String())
-        Dim grades As New Queue(Of Integer)
-        Dim sum As Integer
-        Do
-            Console.Write("Enter a number: ")
-            Dim input As Integer = Console.ReadLine()
-            If input = -1 Then
-                Exit Do
+        Dim indata As FileStream = New FileStream("indata.txt", FileMode.Create, FileAccess.Write)
+        Dim number As Random = New Random
+        Dim writer As StreamWriter = New StreamWriter(indata)
+        For i = 0 To 10
+            If i = 10 Then
+                writer.Write(number.Next(50))
+            Else
+                writer.Write(number.Next(50) & ", ")
             End If
-            grades.Enqueue(input)
-            sum += input
-        Loop
-
-        Console.WriteLine(sum / grades.Count)
-
-        For i = 0 To grades.Count - 1
-            Console.WriteLine(grades.Dequeue)
         Next
+        writer.Close()
+
+        indata = New FileStream("indata.txt", FileMode.Open, FileAccess.Read)
+
+        Dim sum As Integer
+        Dim reader As StreamReader = New StreamReader(indata)
+        For Each num As Integer In reader.ReadLine().Split(", ")
+            sum += num
+        Next
+        reader.Close()
+        Console.WriteLine(sum)
     End Sub
 End Module
